@@ -61,7 +61,7 @@ input{
 }
 
 form button{
-    width: 40px;
+    width: 45px;
     height: 40px;
     border-radius: 50%;
     outline: none;
@@ -142,5 +142,10 @@ form button:hover{
 @media(min-width: 1024px){
     main{
         min-width: 400px;
+    }
+
+    form button{
+        height: 40px;
+        width: 40px;
     }
 }
