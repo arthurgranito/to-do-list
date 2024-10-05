@@ -12,13 +12,14 @@ body{
     align-items: center;
     justify-content: center;
     gap: 20px;
+    padding: 20px;
 }
 
 main{
     padding: 20px;
     background-color: #313131;
     border-radius: 10px;
-    min-width: 350px;
+    width: 370px;
     display: flex;
     flex-direction: column;
     max-height: 300px;
@@ -134,4 +135,10 @@ form button:hover{
 
 .concluida p{
     text-decoration: line-through;
+}
+
+@media(min-width: 1024px){
+    main{
+        min-width: 400px;
+    }
 }
