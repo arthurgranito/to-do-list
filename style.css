@@ -19,7 +19,6 @@ main{
     padding: 20px;
     background-color: #313131;
     border-radius: 10px;
-    min-width: 340px;
     max-width: 370px;
     display: flex;
     flex-direction: column;
