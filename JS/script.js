@@ -101,4 +101,3 @@ const recarregarTela = () => {
 }
 
 recarregarTela();
-
