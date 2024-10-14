@@ -73,7 +73,7 @@ form button:hover{
     padding: 10px;
     background-color: white;
     border-radius: 10px;
-    height: 40px;
+    min-height: 40px;
 }
 
 .tarefa button{
@@ -93,6 +93,8 @@ form button:hover{
 
 .tarefa p{
     font-weight: 500;
+    max-width: 70%;
+    text-align: center;
 }
 
 .check{
