@@ -11,13 +11,21 @@ body{
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    background-image: url('../uuunion.svg');
+    background-position: center;
+    background-size: cover;
 }
 
 main{
     padding: 10px;
-    background-color: #313131;
+    background-color: white;
     border-radius: 10px;
     width: 80%;
+    box-shadow: 0px 10px 10px black;
+}
+
+h1{
+    color: white;
 }
 
 form{
@@ -25,13 +33,15 @@ form{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
+    background-color: #313131;
     border-radius: 10px;
 }
 
 input{
     padding: 10px;
     height: 40px;
+    background-color: #313131;
+    color: white;
     border-radius: 10px;
     border: none;
     outline: none;
@@ -71,9 +81,10 @@ form button:hover{
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    background-color: white;
+    background-color: #313131;
+    color: white;
     border-radius: 10px;
-    min-height: 40px;
+    height: 40px;
 }
 
 .tarefa button{
