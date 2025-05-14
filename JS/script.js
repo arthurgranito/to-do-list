@@ -1,35 +1,35 @@
-const inputTarefa = document.getElementById('tarefa');
+const inputTask = document.getElementById('task');
 const form = document.getElementById('form');
-const divTarefas = document.getElementById('tarefas');
+const divTasks = document.getElementById('tasks');
 
-const tarefas = [];
+const tasks = [];
 
-class Tarefa{
-    constructor(tarefa, concluida){
-        this.tarefa = tarefa;
-        this.concluida = concluida;
+class Task {
+    constructor(task, completed) {
+        this.task = task;
+        this.completed = completed;
     }
 }
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if (inputTarefa.value == '') {
-        alert('Preencha com sua tarefa');
+    if (inputTask.value == '') {
+        alert('Please enter your task');
     } else {
-        const tarefa = new Tarefa(inputTarefa.value, false);
-        tarefas.push(tarefa);
+        const task = new Task(inputTask.value, false);
+        tasks.push(task);
 
-        atualizarTarefas();
+        updateTasks();
     }
-})
+});
 
-const atualizarTarefas = () => {
-    divTarefas.innerHTML = '';
-    divTarefas.classList.remove('hidden');
-    tarefas.forEach((tarefa, index) => {
+const updateTasks = () => {
+    divTasks.innerHTML = '';
+    divTasks.classList.remove('hidden');
+    tasks.forEach((task, index) => {
         const div = document.createElement('div');
-        div.className = 'tarefa';
+        div.className = 'task';
 
         const buttonCheck = document.createElement('button');
         buttonCheck.classList.add('check');
@@ -38,13 +38,13 @@ const atualizarTarefas = () => {
         buttonCheck.appendChild(iCheck);
 
         buttonCheck.addEventListener('click', () => {
-            concluirTarefa(index);
-        })
+            toggleTaskCompletion(index);
+        });
 
         const p = document.createElement('p');
-        p.innerText = `${tarefa.tarefa}`;
- 
-        if(tarefa.concluida == true){
+        p.innerText = `${task.task}`;
+
+        if (task.completed === true) {
             div.style.backgroundColor = 'rgb(112, 247, 112)';
             p.style.color = 'white';
             p.style.textDecoration = 'line-through';
@@ -58,46 +58,46 @@ const atualizarTarefas = () => {
         buttonTrash.id = index;
 
         buttonTrash.addEventListener('click', () => {
-            deletarTarefa(buttonTrash.id);
-        })
+            deleteTask(buttonTrash.id);
+        });
 
         div.appendChild(buttonCheck);
         div.appendChild(p);
         div.appendChild(buttonTrash);
 
-        divTarefas.appendChild(div);
+        divTasks.appendChild(div);
 
-        inputTarefa.value = '';
-    })
+        inputTask.value = '';
+    });
 
-    localStorage.setItem('lista', JSON.stringify(tarefas));
-}
+    localStorage.setItem('taskList', JSON.stringify(tasks));
+};
 
-const deletarTarefa = (id) => {
-    tarefas.splice(id, 1);
-    atualizarTarefas();
-    if (tarefas.length == 0) {
-        divTarefas.classList.add('hidden');
+const deleteTask = (id) => {
+    tasks.splice(id, 1);
+    updateTasks();
+    if (tasks.length === 0) {
+        divTasks.classList.add('hidden');
     }
-}
+};
 
-const concluirTarefa = (id) => {
-    const tarefa = tarefas[id];
-    tarefa.concluida = !tarefa.concluida;
+const toggleTaskCompletion = (id) => {
+    const task = tasks[id];
+    task.completed = !task.completed;
 
-    atualizarTarefas();
-}
+    updateTasks();
+};
 
-const recarregarTela = () => {
-    const tarefasSalvas = JSON.parse(localStorage.getItem('lista'));
-    if(tarefasSalvas.length == 0){
+const reloadPage = () => {
+    const savedTasks = JSON.parse(localStorage.getItem('taskList'));
+    if (!savedTasks || savedTasks.length === 0) {
         return;
-    } else{
-        tarefasSalvas.forEach(tarefa => {
-            tarefas.push(tarefa);
-        })
-        atualizarTarefas();
+    } else {
+        savedTasks.forEach(task => {
+            tasks.push(task);
+        });
+        updateTasks();
     }
-}
+};
 
-recarregarTela();
+reloadPage();
